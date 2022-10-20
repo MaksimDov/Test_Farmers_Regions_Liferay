@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.liferay.farmerPortlet">
+    <author>Test Test</author>
+    <namespace>TestTask</namespace>
+
+    <entity name="Region" local-service="true" remote-service="true">
+
+        <!-- PK fields -->
+
+        <column name="regionId" type="long" primary="true" />
+
+        <!-- Audit fields -->
+
+
+        <!-- Other fields -->
+
+        <column name="regionName" type="String" />
+        <column name="regionCode" type="String" />
+
+        <!-- Order -->
+
+        <order by="asc">
+            <order-column name="regionId" />
+        </order>
+
+        <!-- Finder methods -->
+
+        <finder name="FindByRegionName" return-type="Collection">
+            <finder-column name="regionName" />
+        </finder>
+        <finder name="FindByRegionCode" return-type="Collection">
+            <finder-column name="regionCode" />
+        </finder>
+    </entity>
+
+    <entity name="Farmer" local-service="true" remote-service="true">
+
+        <!-- PK fields -->
+
+        <column name="farmerId" type="long" primary="true" />
+
+        <!-- Audit fields -->
+
+
+        <!-- Other fields -->
+
+        <column name="companyName" type="String" />
+        <column name="organizationForm" type="String" />
+        <column name="inn" type="String" />
+        <column name="kpp" type="String" />
+        <column name="ogrn" type="String" />
+        <column name="regionId" type="long" />
+        <column name="fieldRegion" type="String" />
+        <column name="registrationDate" type="String" />
+        <column name="registrationDate" type="String" />
+
+        <!-- Order -->
+
+        <order by="asc">
+            <order-column name="regionId" />
+        </order>
+
+        <!-- Finder methods -->
+
+        <finder name="FindByRegionName" return-type="Collection">
+            <finder-column name="regionName" />
+        </finder>
+        <finder name="FindByRegionCode" return-type="Collection">
+            <finder-column name="regionCode" />
+        </finder>
+    </entity>
+
+</service-builder>
