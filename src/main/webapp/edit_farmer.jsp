@@ -41,7 +41,7 @@
         <aui:input label="Район регистрации" name="RegionId">
             <aui:validator name="required"/>
         </aui:input>
-        <aui:input label="Район посевных полей" name="FieldRegion">
+        <aui:input label="Район посевных полей(Через ',')" name="FieldRegion">
             <aui:validator name="required"/>
         </aui:input>
         <aui:input label="Дата регистрации" type="date" name="RegistrationDate">

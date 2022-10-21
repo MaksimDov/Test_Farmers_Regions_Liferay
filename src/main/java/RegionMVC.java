@@ -1,5 +1,7 @@
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.farmerPortlet.model.Region;
 import com.liferay.farmerPortlet.service.RegionLocalServiceUtil;
+import com.liferay.farmerPortlet.service.persistence.RegionUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -15,55 +17,47 @@ import java.util.logging.Logger;
 public class RegionMVC extends MVCPortlet {
 
     public void addRegion(ActionRequest request, ActionResponse response) throws SystemException {
-            String regionName = ParamUtil.getString(request, "RegionName");
-            String regionCode = ParamUtil.getString(request, "RegionCode");
-            String archiveStatus = ParamUtil.getString(request, "ArchiveStatus");
+        String regionName = ParamUtil.getString(request, "RegionName");
+        String regionCode = ParamUtil.getString(request, "RegionCode");
+        String archiveStatus = ParamUtil.getString(request, "ArchiveStatus");
 
         try {
             Region region = RegionLocalServiceUtil.createRegion(regionName, regionCode, archiveStatus);
             // Do whatever you want after creating new details
-        }
-        catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    //    public void addRegion(ActionRequest request, ActionResponse response) {
-//
-//        try {
-//            PortletPreferences prefs = request.getPreferences();
-//            String[] listOfRegions = prefs.getValues("list-of-regions", new String[1]);
-//            ArrayList<String> regions = new ArrayList<String>();
-//
-//            if (listOfRegions != null) {
-//                regions = new ArrayList<String>(Arrays.asList(prefs.getValues(
-//                        "list-of-regions", new String[1])));
-//            }
-//
-//            String regionName = ParamUtil.getString(request, "RegionName");
-//            String regionCode = ParamUtil.getString(request, "RegionCode");
-//            String archiveStatus = ParamUtil.getString(request, "ArchiveStatus");
-//
-//            String region = regionName + "^" + regionCode + "^" + archiveStatus;
-//            regions.add(region);
-//            String[] array = regions.toArray(new String[regions.size()]);
-//            prefs.setValues("list-of-regions", array);
-//
-//            try {
-//                prefs.store();
-//            } catch (IOException ex) {
-//                Logger.getLogger(RegionMVC.class.getName()).log(
-//                        Level.SEVERE, null, ex);
-//            } catch (ValidatorException ex) {
-//                Logger.getLogger(RegionMVC.class.getName()).log(
-//                        Level.SEVERE, null, ex);
-//            }
-//        } catch (ReadOnlyException ex) {
-//            Logger.getLogger(RegionMVC.class.getName()).log(
-//                    Level.SEVERE, null, ex);
-//        }
-//    }
-//
+    @Override
+    public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException, IOException {
+
+            List<Region> regions = null;
+            try {
+                regions = fillRegionsList();
+            } catch (SystemException e) {
+                throw new RuntimeException(e);
+            }
+            renderRequest.setAttribute("regions", regions);
+
+        super.render(renderRequest, renderResponse);
+    }
+
+    private List<Region> fillRegionsList() throws SystemException {
+        ArrayList<Region> regions = new ArrayList();
+        List<Region> regionsFormDB= RegionLocalServiceUtil.findAllRegions();
+        for (Region region : regionsFormDB) {
+            Region newRegion = RegionUtil.create(CounterLocalServiceUtil.increment());
+            newRegion.setRegionName(region.getRegionName());
+            newRegion.setRegionCode(region.getRegionCode());
+            newRegion.setArchiveStatus(region.getArchiveStatus());
+            newRegion.setRegionId(region.getRegionId());
+            regions.add(newRegion);
+        }
+        return regions;
+    }
+
+
 //    @Override
 //    public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException, IOException {
 //

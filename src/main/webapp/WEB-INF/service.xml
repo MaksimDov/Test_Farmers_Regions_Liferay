@@ -19,7 +19,7 @@
         <column name="regionCode" type="String" />
         <column name="archiveStatus" type="String" />
 
-        <column name="farmers" type="Collection" entity="Farmer"/>
+        <column name="farmers" type="Collection" entity="Farmer" mapping-table="Farmers_Regions" />
         <!-- Order -->
 
         <order by="asc">
@@ -56,8 +56,8 @@
         <!--        <column name="fieldRegion" type="String" />-->
         <column name="registrationDate" type="String" />
         <column name="archiveStatus" type="String" />
-        <column name="fields" type="Collection" entity="Region"/>
-
+        <!--        <column name="fields" type="Collection" entity="Region" mapping-table="regionId"/>-->
+        <column name="regions" type="Collection" entity="Region" mapping-table="Farmers_Regions"/>
         <!-- Order -->
 
         <order by="asc">

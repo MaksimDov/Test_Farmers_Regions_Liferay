@@ -27,7 +27,7 @@
     />
 
     <liferay-ui:search-container-row
-            className="entities.Region"
+            className="com.liferay.farmerPortlet.model.Region"
             modelVar="region"
     >
         <liferay-ui:search-container-column-text name="Название района" property="regionName" />

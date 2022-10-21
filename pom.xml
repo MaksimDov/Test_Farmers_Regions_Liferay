@@ -27,7 +27,7 @@
 	</properties>
 
 	<build>
-		<finalName>${artifactId}</finalName>
+<!--		<finalName>${artifactId}</finalName>-->
 		<plugins>
 			<plugin>
 				<groupId>com.liferay.maven.plugins</groupId>

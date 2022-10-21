@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.farmerPortlet.model.Farmer" />
+	<import class="com.liferay.farmerPortlet.model.Region" />
+	<class name="com.liferay.farmerPortlet.model.impl.FarmerImpl" table="TestTask_Farmer">
+		<cache usage="read-write" />
+		<id name="farmerId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="organizationForm" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="inn" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="kpp" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ogrn" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="regionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="registrationDate" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="archiveStatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.farmerPortlet.model.impl.RegionImpl" table="TestTask_Region">
+		<cache usage="read-write" />
+		<id name="regionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="regionName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="regionCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="archiveStatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

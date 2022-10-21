@@ -27,7 +27,7 @@
     />
 
     <liferay-ui:search-container-row
-            className="entities.Farmer"
+            className="com.liferay.farmerPortlet.model.Farmer"
             modelVar="farmer"
     >
         <liferay-ui:search-container-column-text name="Название организации" property="companyName" />
@@ -36,7 +36,7 @@
         <liferay-ui:search-container-column-text name="КПП" property="kpp" />
         <liferay-ui:search-container-column-text name="ОГРН" property="ogrn" />
         <liferay-ui:search-container-column-text name="Район регистрации" property="regionId" />
-        <liferay-ui:search-container-column-text name="Районы посевных полей" property="fieldRegion" />
+<%--        <liferay-ui:search-container-column-text name="Районы посевных полей" property="fieldRegion" />--%>
         <liferay-ui:search-container-column-text name="Дата регистрации" property="registrationDate" />
         <liferay-ui:search-container-column-text name="Статус архивности" property="archiveStatus" />
 
