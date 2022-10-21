@@ -8,6 +8,7 @@
 	<name>FarmerPortlet Portlet</name>
 	<version>1.0-SNAPSHOT</version>
 
+
 	<properties>
 		<copy overwrite="true"></copy>
 		<compiler.maven.source>1.7</compiler.maven.source>
@@ -26,6 +27,7 @@
 	</properties>
 
 	<build>
+		<finalName>${artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>com.liferay.maven.plugins</groupId>
@@ -46,6 +48,7 @@
 					<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir>
 					<liferayVersion>${liferay.version}</liferayVersion>
 					<pluginType>portlet</pluginType>
+					<pluginName>${project.artifactId}-${project.version}</pluginName>
 				</configuration>
 			</plugin>
 			<plugin>

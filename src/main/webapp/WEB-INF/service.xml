@@ -17,7 +17,9 @@
 
         <column name="regionName" type="String" />
         <column name="regionCode" type="String" />
+        <column name="archiveStatus" type="String" />
 
+        <column name="farmers" type="Collection" entity="Farmer"/>
         <!-- Order -->
 
         <order by="asc">
@@ -50,25 +52,26 @@
         <column name="inn" type="String" />
         <column name="kpp" type="String" />
         <column name="ogrn" type="String" />
-        <column name="regionId" type="long" />
-        <column name="fieldRegion" type="String" />
+        <column name="regionId" type="long"/>
+        <!--        <column name="fieldRegion" type="String" />-->
         <column name="registrationDate" type="String" />
-        <column name="registrationDate" type="String" />
+        <column name="archiveStatus" type="String" />
+        <column name="fields" type="Collection" entity="Region"/>
 
         <!-- Order -->
 
         <order by="asc">
-            <order-column name="regionId" />
+            <order-column name="farmerId" />
         </order>
 
         <!-- Finder methods -->
 
-        <finder name="FindByRegionName" return-type="Collection">
-            <finder-column name="regionName" />
+        <finder name="FindByCompanyName" return-type="Collection">
+            <finder-column name="companyName" />
         </finder>
-        <finder name="FindByRegionCode" return-type="Collection">
-            <finder-column name="regionCode" />
-        </finder>
+        <!--        <finder name="FindByRegionCode" return-type="Collection">-->
+        <!--            <finder-column name="regionCode" />-->
+        <!--        </finder>-->
     </entity>
 
 </service-builder>
