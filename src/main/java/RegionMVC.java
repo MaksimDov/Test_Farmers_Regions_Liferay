@@ -1,10 +1,18 @@
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.farmerPortlet.model.Farmer;
 import com.liferay.farmerPortlet.model.Region;
+import com.liferay.farmerPortlet.service.FarmerLocalServiceUtil;
 import com.liferay.farmerPortlet.service.RegionLocalServiceUtil;
 import com.liferay.farmerPortlet.service.persistence.RegionUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import entities.RegionEntity;
 
 import javax.portlet.*;
 import java.io.IOException;
@@ -29,10 +37,46 @@ public class RegionMVC extends MVCPortlet {
         }
     }
 
+    public void deleteRegion (ActionRequest request, ActionResponse response) {
+
+        long regionId = ParamUtil.getLong(request, "regionId");
+
+        try {
+
+            ServiceContext serviceContext = ServiceContextFactory.getInstance(
+                    Farmer.class.getName(), request);
+
+
+            RegionLocalServiceUtil.deleteRegion(regionId, serviceContext);
+
+        } catch (Exception e) {
+
+            SessionErrors.add(request, e.getClass().getName());
+        }
+    }
+
+    public void updateRegion(ActionRequest request, ActionResponse response)
+            throws PortalException, SystemException {
+
+        long regionId = ParamUtil.getLong(request, "regionId");
+
+
+
+
+        String regionName = ParamUtil.getString(request, "RegionName");
+        String regionCode = ParamUtil.getString(request, "RegionCode");
+        String archiveStatus = ParamUtil.getString(request, "ArchiveStatus");
+
+        RegionLocalServiceUtil.updateRegion(regionId, regionName, regionCode, archiveStatus);
+
+
+        SessionMessages.add(request, "regionUpdated");
+    }
+
     @Override
     public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException, IOException {
 
-            List<Region> regions = null;
+            List<RegionEntity> regions = null;
             try {
                 regions = fillRegionsList();
             } catch (SystemException e) {
@@ -43,11 +87,11 @@ public class RegionMVC extends MVCPortlet {
         super.render(renderRequest, renderResponse);
     }
 
-    private List<Region> fillRegionsList() throws SystemException {
-        ArrayList<Region> regions = new ArrayList();
+    private List<RegionEntity> fillRegionsList() throws SystemException {
+        ArrayList<RegionEntity> regions = new ArrayList();
         List<Region> regionsFormDB= RegionLocalServiceUtil.findAllRegions();
         for (Region region : regionsFormDB) {
-            Region newRegion = RegionUtil.create(CounterLocalServiceUtil.increment());
+            RegionEntity newRegion = new RegionEntity();
             newRegion.setRegionName(region.getRegionName());
             newRegion.setRegionCode(region.getRegionCode());
             newRegion.setArchiveStatus(region.getArchiveStatus());

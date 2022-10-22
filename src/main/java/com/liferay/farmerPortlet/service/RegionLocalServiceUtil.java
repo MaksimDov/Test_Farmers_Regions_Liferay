@@ -424,6 +424,22 @@ public class RegionLocalServiceUtil {
         return getService().findFirstRegionByName(name);
     }
 
+    public static com.liferay.farmerPortlet.model.Region deleteRegion(
+        long regionId, com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().deleteRegion(regionId, serviceContext);
+    }
+
+    public static com.liferay.farmerPortlet.model.Region updateRegion(
+        long regionId, java.lang.String regionName,
+        java.lang.String regionCode, java.lang.String archiveStatus)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService()
+                   .updateRegion(regionId, regionName, regionCode, archiveStatus);
+    }
+
     public static void clearService() {
         _service = null;
     }

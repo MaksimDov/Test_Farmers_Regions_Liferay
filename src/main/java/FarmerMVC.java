@@ -109,27 +109,7 @@ public class FarmerMVC extends MVCPortlet {
         SessionMessages.add(request, "farmerUpdated");
     }
 
-    public void deleteLastFarmer (ActionRequest request) throws SystemException {
-        List<Farmer> farmersFormDB= FarmerLocalServiceUtil.findAllFarmers();
-        long farmerId = 0;
-        for(Farmer farmer : farmersFormDB){
-            farmerId = farmer.getFarmerId();
-        }
 
-
-        try {
-
-            ServiceContext serviceContext = ServiceContextFactory.getInstance(
-                    Farmer.class.getName(), request);
-
-
-            FarmerLocalServiceUtil.deleteFarmer(farmerId, serviceContext);
-
-        } catch (Exception e) {
-
-            SessionErrors.add(request, e.getClass().getName());
-        }
-    }
 
     private long[] parseFields(String fields) throws SystemException {
         String fieldsStr = fields.replaceAll("\\s","");

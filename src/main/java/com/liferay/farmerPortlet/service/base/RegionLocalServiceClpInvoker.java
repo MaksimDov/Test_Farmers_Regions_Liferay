@@ -85,6 +85,10 @@ public class RegionLocalServiceClpInvoker {
     private String[] _methodParameterTypes64;
     private String _methodName65;
     private String[] _methodParameterTypes65;
+    private String _methodName66;
+    private String[] _methodParameterTypes66;
+    private String _methodName67;
+    private String[] _methodParameterTypes67;
 
     public RegionLocalServiceClpInvoker() {
         _methodName0 = "addRegion";
@@ -265,6 +269,19 @@ public class RegionLocalServiceClpInvoker {
         _methodName65 = "findFirstRegionByName";
 
         _methodParameterTypes65 = new String[] { "java.lang.String" };
+
+        _methodName66 = "deleteRegion";
+
+        _methodParameterTypes66 = new String[] {
+                "long", "com.liferay.portal.service.ServiceContext"
+            };
+
+        _methodName67 = "updateRegion";
+
+        _methodParameterTypes67 = new String[] {
+                "long", "java.lang.String", "java.lang.String",
+                "java.lang.String"
+            };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -502,6 +519,19 @@ public class RegionLocalServiceClpInvoker {
         if (_methodName65.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
             return RegionLocalServiceUtil.findFirstRegionByName((java.lang.String) arguments[0]);
+        }
+
+        if (_methodName66.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+            return RegionLocalServiceUtil.deleteRegion(((Long) arguments[0]).longValue(),
+                (com.liferay.portal.service.ServiceContext) arguments[1]);
+        }
+
+        if (_methodName67.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+            return RegionLocalServiceUtil.updateRegion(((Long) arguments[0]).longValue(),
+                (java.lang.String) arguments[1],
+                (java.lang.String) arguments[2], (java.lang.String) arguments[3]);
         }
 
         throw new UnsupportedOperationException();

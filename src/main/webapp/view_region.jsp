@@ -28,14 +28,16 @@
     />
 
     <liferay-ui:search-container-row
-            className="com.liferay.farmerPortlet.model.Region"
+            className="entities.RegionEntity"
             modelVar="region"
     >
-
+        <liferay-ui:search-container-column-text name="Идентификатор" property="regionId" />
         <liferay-ui:search-container-column-text name="Название района" property="regionName" />
         <liferay-ui:search-container-column-text name="Код района" property="regionCode" />
         <liferay-ui:search-container-column-text name="Статус архивности" property="archiveStatus" />
-
+        <liferay-ui:search-container-column-jsp
+                path="/region_actions.jsp"
+                align="right" />
 
 
 

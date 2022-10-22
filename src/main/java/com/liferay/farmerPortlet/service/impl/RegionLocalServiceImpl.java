@@ -1,10 +1,14 @@
 package com.liferay.farmerPortlet.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.farmerPortlet.model.Farmer;
 import com.liferay.farmerPortlet.model.Region;
 import com.liferay.farmerPortlet.service.base.RegionLocalServiceBaseImpl;
 import com.liferay.farmerPortlet.service.persistence.RegionUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.service.ServiceContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +73,32 @@ public class RegionLocalServiceImpl extends RegionLocalServiceBaseImpl {
                 region.setArchiveStatus(reg.getArchiveStatus());
             }
         }
+        return region;
+    }
+
+    public Region deleteRegion(long regionId, ServiceContext serviceContext)
+            throws PortalException, SystemException {
+
+        Region region = getRegion(regionId);
+
+        resourceLocalService.deleteResource(
+                serviceContext.getCompanyId(), Region.class.getName(),
+                ResourceConstants.SCOPE_INDIVIDUAL, regionId);
+
+        region = deleteRegion(regionId);
+
+        return region;
+    }
+
+    public Region updateRegion(long regionId, String regionName, String regionCode, String archiveStatus) throws SystemException, PortalException {
+
+        Region region = getRegion(regionId);
+//        Farmer farmer = FarmerLocalServiceUtil.getFarmer(farmerId);
+        region.setRegionName(regionName);
+        region.setRegionCode(regionCode);
+        region.setArchiveStatus(archiveStatus);
+        regionPersistence.update(region);
+//        updateFarmer(farmer);
         return region;
     }
 

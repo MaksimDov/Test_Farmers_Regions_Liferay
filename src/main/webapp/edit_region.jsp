@@ -1,33 +1,53 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: maksim
-  Date: 17.10.2022
-  Time: 20:00
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.liferay.farmerPortlet.model.Region" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.farmerPortlet.service.RegionLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
+<%@ page import="com.liferay.portal.kernel.exception.SystemException" %>
+<%@ taglib prefix="portlet" uri="http://java.sun.com/portlet" %>
+<%@ taglib prefix="aui" uri="http://alloy.liferay.com/tld/aui" %>
 
 <%@ page contentType="text/html;charset=utf-8" %>
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-<%@ taglib uri="http://alloy.liferay.com/tld/aui" prefix="aui" %>
-<portlet:defineObjects/>
 
+<%
+    Region region = null;
+
+    long regionId = ParamUtil.getLong(request, "regionId");
+
+    if (regionId > 0) {
+        try {
+            region = RegionLocalServiceUtil.getRegion(regionId);
+        } catch (PortalException e) {
+            throw new RuntimeException(e);
+        } catch (SystemException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+%>
 
 <portlet:renderURL var="viewURL">
-    <portlet:param name="mvcPath" value="/view.jsp"></portlet:param>
+    <portlet:param name="mvcPath" value="/view_region.jsp"></portlet:param>
 </portlet:renderURL>
 
-<portlet:actionURL name="addRegion" var="addRegionURL"></portlet:actionURL>
+<portlet:actionURL name='<%= region== null ? "addRegion" : "updateRegion" %>' var="editRegionURL" />
 
-<aui:form action="<%= addRegionURL %>" name="<portlet:namespace />fm">
+<aui:model-context bean="<%= region %>" model="<%= Region.class %>" />
+
+<aui:form action="<%= editRegionURL %>" name="<portlet:namespace />fm">
     <aui:fieldset>
-        <aui:input label="Название района" name="RegionName">
+        <aui:input type="hidden" name="regionId"
+                   value='<%= region == null ? "" : region.getRegionId() %>' />
+        <aui:input  name="name" />
+        <aui:input type="text" label="Название района" name="RegionName"
+                   value='<%= region == null ? "" : region.getRegionName() %>'>
             <aui:validator name="required"/>
         </aui:input>
-        <aui:input label="Код района" name="RegionCode">
+        <aui:input type="text" label="Код района" name="RegionCode" maxlength="2" minlength="2"
+                   value='<%= region == null ? "" : region.getRegionCode() %>'>
             <aui:validator name="required"/>
-            <aui:validator name="digits"/>
         </aui:input>
-        <aui:select label="Статус архивности" name="ArchiveStatus">
+        <aui:select label="Статус архивности" name="ArchiveStatus"
+                    value='<%= region == null ? "" : region.getArchiveStatus()%>'>>
             <aui:option value="Да">Да</aui:option>
             <aui:option value="Нет">Нет</aui:option>
             <%--            <aui:validator name="required"/>--%>
@@ -36,7 +56,6 @@
 
     <aui:button-row>
         <aui:button type="submit"></aui:button>
-        <aui:button type="cancel" onClick="<%= viewURL.toString() %>"></aui:button>
+        <aui:button type="cancel" onClick="<%= viewURL %>"></aui:button>
     </aui:button-row>
 </aui:form>
-

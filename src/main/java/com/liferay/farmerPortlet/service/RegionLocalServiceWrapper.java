@@ -450,6 +450,24 @@ public class RegionLocalServiceWrapper implements RegionLocalService,
         return _regionLocalService.findFirstRegionByName(name);
     }
 
+    @Override
+    public com.liferay.farmerPortlet.model.Region deleteRegion(long regionId,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _regionLocalService.deleteRegion(regionId, serviceContext);
+    }
+
+    @Override
+    public com.liferay.farmerPortlet.model.Region updateRegion(long regionId,
+        java.lang.String regionName, java.lang.String regionCode,
+        java.lang.String archiveStatus)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _regionLocalService.updateRegion(regionId, regionName,
+            regionCode, archiveStatus);
+    }
+
     /**
      * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
      */

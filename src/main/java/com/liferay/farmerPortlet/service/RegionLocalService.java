@@ -362,4 +362,15 @@ public interface RegionLocalService extends BaseLocalService,
     public com.liferay.farmerPortlet.model.Region findFirstRegionByName(
         java.lang.String name)
         throws com.liferay.portal.kernel.exception.SystemException;
+
+    public com.liferay.farmerPortlet.model.Region deleteRegion(long regionId,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
+    public com.liferay.farmerPortlet.model.Region updateRegion(long regionId,
+        java.lang.String regionName, java.lang.String regionCode,
+        java.lang.String archiveStatus)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
 }

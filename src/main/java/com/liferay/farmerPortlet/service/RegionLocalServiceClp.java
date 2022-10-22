@@ -84,6 +84,10 @@ public class RegionLocalServiceClp implements RegionLocalService {
     private String[] _methodParameterTypes37;
     private String _methodName38;
     private String[] _methodParameterTypes38;
+    private String _methodName39;
+    private String[] _methodParameterTypes39;
+    private String _methodName40;
+    private String[] _methodParameterTypes40;
 
     public RegionLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -266,6 +270,19 @@ public class RegionLocalServiceClp implements RegionLocalService {
         _methodName38 = "findFirstRegionByName";
 
         _methodParameterTypes38 = new String[] { "java.lang.String" };
+
+        _methodName39 = "deleteRegion";
+
+        _methodParameterTypes39 = new String[] {
+                "long", "com.liferay.portal.service.ServiceContext"
+            };
+
+        _methodName40 = "updateRegion";
+
+        _methodParameterTypes40 = new String[] {
+                "long", "java.lang.String", "java.lang.String",
+                "java.lang.String"
+            };
     }
 
     @Override
@@ -1280,6 +1297,85 @@ public class RegionLocalServiceClp implements RegionLocalService {
                     new Object[] { ClpSerializer.translateInput(name) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.liferay.farmerPortlet.model.Region) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public com.liferay.farmerPortlet.model.Region deleteRegion(long regionId,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName39,
+                    _methodParameterTypes39,
+                    new Object[] {
+                        regionId,
+                        
+                    ClpSerializer.translateInput(serviceContext)
+                    });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.liferay.farmerPortlet.model.Region) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public com.liferay.farmerPortlet.model.Region updateRegion(long regionId,
+        java.lang.String regionName, java.lang.String regionCode,
+        java.lang.String archiveStatus)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName40,
+                    _methodParameterTypes40,
+                    new Object[] {
+                        regionId,
+                        
+                    ClpSerializer.translateInput(regionName),
+                        
+                    ClpSerializer.translateInput(regionCode),
+                        
+                    ClpSerializer.translateInput(archiveStatus)
+                    });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
 
             if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
                 throw (com.liferay.portal.kernel.exception.SystemException) t;
