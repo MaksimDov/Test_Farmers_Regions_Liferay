@@ -76,13 +76,13 @@ public class RegionMVC extends MVCPortlet {
     @Override
     public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException, IOException {
 
-            List<RegionEntity> regions = null;
-            try {
-                regions = fillRegionsList();
-            } catch (SystemException e) {
-                throw new RuntimeException(e);
-            }
-            renderRequest.setAttribute("regions", regions);
+        List<RegionEntity> regions = null;
+        try {
+            regions = fillRegionsList();
+        } catch (SystemException e) {
+            throw new RuntimeException(e);
+        }
+        renderRequest.setAttribute("regions", regions);
 
         super.render(renderRequest, renderResponse);
     }

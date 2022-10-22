@@ -143,7 +143,6 @@ public class FarmerMVC extends MVCPortlet {
     }
 
     private List<FarmerEntity> fillFarmersList() throws SystemException, PortalException {
-        System.out.println("IN");
         ArrayList<FarmerEntity> farmers = new ArrayList();
         List<Farmer> farmersFormDB= FarmerLocalServiceUtil.findAllFarmers();
         for (Farmer farmer : farmersFormDB) {
@@ -167,7 +166,6 @@ public class FarmerMVC extends MVCPortlet {
                 fieldsName = (fieldsName.substring(0, fieldsName.length() - 2));
             }
             newFarmer.setFieldRegion(fieldsName);
-            System.out.println(newFarmer);
             farmers.add(newFarmer);
         }
         return farmers;

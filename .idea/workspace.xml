@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="681d0eeb-2c49-4de3-8a78-7dc6b17734ec" name="Changes" comment="Add full CRUD for Farmer.">
+    <list default="true" id="681d0eeb-2c49-4de3-8a78-7dc6b17734ec" name="Changes" comment="Add region_actions.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/FarmerMVC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FarmerMVC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/RegionMVC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RegionMVC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/RegionLocalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/RegionLocalService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/RegionLocalServiceClp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/RegionLocalServiceClp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/RegionLocalServiceUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/RegionLocalServiceUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/RegionLocalServiceWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/RegionLocalServiceWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/base/RegionLocalServiceClpInvoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/base/RegionLocalServiceClpInvoker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/impl/RegionLocalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/impl/RegionLocalServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Region.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/RegionEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/service.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/edit_farmer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/edit_farmer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/edit_region.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/edit_region.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/RegionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/RegionEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view_region.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view_region.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +86,7 @@
       <workItem from="1666364182592" duration="7350000" />
       <workItem from="1666409650362" duration="2801000" />
       <workItem from="1666387285896" duration="21436000" />
-      <workItem from="1666409361810" duration="9601000" />
+      <workItem from="1666409361810" duration="16535000" />
     </task>
     <task id="LOCAL-00001" summary="Add view, many-to-many relation">
       <created>1666371215888</created>
@@ -111,7 +102,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666427842559</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add full CRUD for Region.">
+      <created>1666431978099</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1666431978099</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add region_actions.">
+      <created>1666432019440</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666432019440</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +136,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add view, many-to-many relation" />
     <MESSAGE value="Add full CRUD for Farmer." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add full CRUD for Farmer." />
+    <MESSAGE value="Add full CRUD for Region." />
+    <MESSAGE value="Add region_actions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add region_actions." />
   </component>
 </project>
