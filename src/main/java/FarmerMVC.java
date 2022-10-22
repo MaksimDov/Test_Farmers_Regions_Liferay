@@ -3,11 +3,19 @@ import com.liferay.farmerPortlet.model.Farmer;
 import com.liferay.farmerPortlet.model.Region;
 import com.liferay.farmerPortlet.service.FarmerLocalServiceUtil;
 import com.liferay.farmerPortlet.service.RegionLocalServiceUtil;
+import com.liferay.farmerPortlet.service.persistence.FarmerPersistence;
+import com.liferay.farmerPortlet.service.persistence.FarmerPersistenceImpl;
 import com.liferay.farmerPortlet.service.persistence.FarmerUtil;
 import com.liferay.farmerPortlet.service.persistence.RegionUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import entities.FarmerEntity;
 
 import javax.portlet.*;
 import java.io.IOException;
@@ -45,6 +53,84 @@ public class FarmerMVC extends MVCPortlet {
 
     }
 
+    public void deleteFarmer (ActionRequest request, ActionResponse response) {
+
+        long farmerId = ParamUtil.getLong(request, "farmerId");
+
+        try {
+
+            ServiceContext serviceContext = ServiceContextFactory.getInstance(
+                    Farmer.class.getName(), request);
+
+
+            FarmerLocalServiceUtil.deleteFarmer(farmerId, serviceContext);
+
+        } catch (Exception e) {
+
+            SessionErrors.add(request, e.getClass().getName());
+        }
+    }
+
+    public void updateFarmer(ActionRequest request, ActionResponse response)
+            throws PortalException, SystemException {
+
+        long farmerId = ParamUtil.getLong(request, "farmerId");
+
+
+
+
+        String companyName = ParamUtil.getString(request, "CompanyName");
+        String organizationForm = ParamUtil.getString(request, "OrganizationForm");
+        String inn = ParamUtil.getString(request, "INN");
+        String kpp = ParamUtil.getString(request, "KPP");
+        String ogrn = ParamUtil.getString(request, "OGRN");
+        long regionId = ParamUtil.getLong(request, "RegionId");
+        String registrationDate = ParamUtil.getString(request, "RegistrationDate");
+        String archiveStatus = ParamUtil.getString(request, "ArchiveStatus");
+
+        try {
+            // Do whatever you want after creating new details
+            String fieldRegions = ParamUtil.getString(request, "FieldRegion");
+            long[] regionsId = parseFields(fieldRegions);
+            try {
+                List<Region> farmerRegions = RegionLocalServiceUtil.getFarmerRegions(farmerId);
+                RegionLocalServiceUtil.deleteFarmerRegions(farmerId, farmerRegions);
+                RegionLocalServiceUtil.addFarmerRegions(farmerId, regionsId);
+            } catch (SystemException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        FarmerLocalServiceUtil.updateFarmer(farmerId, companyName, organizationForm, inn, kpp, ogrn, regionId, registrationDate, archiveStatus);
+
+
+        SessionMessages.add(request, "farmerUpdated");
+    }
+
+    public void deleteLastFarmer (ActionRequest request) throws SystemException {
+        List<Farmer> farmersFormDB= FarmerLocalServiceUtil.findAllFarmers();
+        long farmerId = 0;
+        for(Farmer farmer : farmersFormDB){
+            farmerId = farmer.getFarmerId();
+        }
+
+
+        try {
+
+            ServiceContext serviceContext = ServiceContextFactory.getInstance(
+                    Farmer.class.getName(), request);
+
+
+            FarmerLocalServiceUtil.deleteFarmer(farmerId, serviceContext);
+
+        } catch (Exception e) {
+
+            SessionErrors.add(request, e.getClass().getName());
+        }
+    }
+
     private long[] parseFields(String fields) throws SystemException {
         String fieldsStr = fields.replaceAll("\\s","");
         String[] parts = fieldsStr.split(",");
@@ -60,12 +146,15 @@ public class FarmerMVC extends MVCPortlet {
         return regionsId;
     }
 
+    @Override
     public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException, IOException {
 
-        List<Farmer> farmers = null;
+        List<FarmerEntity> farmers = null;
         try {
             farmers = fillFarmersList();
         } catch (SystemException e) {
+            throw new RuntimeException(e);
+        } catch (PortalException e) {
             throw new RuntimeException(e);
         }
         renderRequest.setAttribute("farmers", farmers);
@@ -73,11 +162,12 @@ public class FarmerMVC extends MVCPortlet {
         super.render(renderRequest, renderResponse);
     }
 
-    private List<Farmer> fillFarmersList() throws SystemException {
-        ArrayList<Farmer> farmers = new ArrayList();
-        List<Farmer> farmersFormDB = FarmerLocalServiceUtil.findAllFarmers();
+    private List<FarmerEntity> fillFarmersList() throws SystemException, PortalException {
+        System.out.println("IN");
+        ArrayList<FarmerEntity> farmers = new ArrayList();
+        List<Farmer> farmersFormDB= FarmerLocalServiceUtil.findAllFarmers();
         for (Farmer farmer : farmersFormDB) {
-            Farmer newFarmer = FarmerUtil.create(CounterLocalServiceUtil.increment());
+            FarmerEntity newFarmer = new FarmerEntity();
             newFarmer.setCompanyName(farmer.getCompanyName());
             newFarmer.setOrganizationForm(farmer.getOrganizationForm());
             newFarmer.setInn(farmer.getInn());
@@ -86,7 +176,18 @@ public class FarmerMVC extends MVCPortlet {
             newFarmer.setRegionId(farmer.getRegionId());
             newFarmer.setRegistrationDate(farmer.getRegistrationDate());
             newFarmer.setArchiveStatus(farmer.getArchiveStatus());
-//            RegionLocalServiceUtil.getFarmerRegions(farmer.getFarmerId());
+            newFarmer.setFarmerId(farmer.getFarmerId());
+            List<Region> fields = RegionLocalServiceUtil.getFarmerRegions(farmer.getFarmerId());
+            String fieldsName = "";
+            for (Region field : fields){
+                fieldsName += RegionLocalServiceUtil.getRegion(field.getRegionId()).getRegionName();
+                fieldsName += ", ";
+            }
+            if (fieldsName.length() > 2 && fieldsName.charAt(fieldsName.length() - 2) == ',') {
+                fieldsName = (fieldsName.substring(0, fieldsName.length() - 2));
+            }
+            newFarmer.setFieldRegion(fieldsName);
+            System.out.println(newFarmer);
             farmers.add(newFarmer);
         }
         return farmers;

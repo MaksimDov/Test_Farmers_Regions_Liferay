@@ -80,6 +80,10 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
     private String[] _methodParameterTypes35;
     private String _methodName36;
     private String[] _methodParameterTypes36;
+    private String _methodName37;
+    private String[] _methodParameterTypes37;
+    private String _methodName38;
+    private String[] _methodParameterTypes38;
 
     public FarmerLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -256,6 +260,20 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         _methodName36 = "findAllFarmers";
 
         _methodParameterTypes36 = new String[] {  };
+
+        _methodName37 = "deleteFarmer";
+
+        _methodParameterTypes37 = new String[] {
+                "long", "com.liferay.portal.service.ServiceContext"
+            };
+
+        _methodName38 = "updateFarmer";
+
+        _methodParameterTypes38 = new String[] {
+                "long", "java.lang.String", "java.lang.String",
+                "java.lang.String", "java.lang.String", "java.lang.String",
+                "long", "java.lang.String", "java.lang.String"
+            };
     }
 
     @Override
@@ -1240,5 +1258,96 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         }
 
         return (java.util.List<com.liferay.farmerPortlet.model.Farmer>) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public com.liferay.farmerPortlet.model.Farmer deleteFarmer(long farmerId,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName37,
+                    _methodParameterTypes37,
+                    new Object[] {
+                        farmerId,
+                        
+                    ClpSerializer.translateInput(serviceContext)
+                    });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.liferay.farmerPortlet.model.Farmer) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public com.liferay.farmerPortlet.model.Farmer updateFarmer(long farmerId,
+        java.lang.String companyName, java.lang.String organizationForm,
+        java.lang.String inn, java.lang.String kpp, java.lang.String ogrn,
+        long regionId, java.lang.String registrationDate,
+        java.lang.String archiveStatus)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName38,
+                    _methodParameterTypes38,
+                    new Object[] {
+                        farmerId,
+                        
+                    ClpSerializer.translateInput(companyName),
+                        
+                    ClpSerializer.translateInput(organizationForm),
+                        
+                    ClpSerializer.translateInput(inn),
+                        
+                    ClpSerializer.translateInput(kpp),
+                        
+                    ClpSerializer.translateInput(ogrn),
+                        
+                    regionId,
+                        
+                    ClpSerializer.translateInput(registrationDate),
+                        
+                    ClpSerializer.translateInput(archiveStatus)
+                    });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.liferay.farmerPortlet.model.Farmer) ClpSerializer.translateOutput(returnObj);
     }
 }

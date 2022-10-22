@@ -356,4 +356,17 @@ public interface FarmerLocalService extends BaseLocalService,
 
     public java.util.List<com.liferay.farmerPortlet.model.Farmer> findAllFarmers()
         throws com.liferay.portal.kernel.exception.SystemException;
+
+    public com.liferay.farmerPortlet.model.Farmer deleteFarmer(long farmerId,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
+    public com.liferay.farmerPortlet.model.Farmer updateFarmer(long farmerId,
+        java.lang.String companyName, java.lang.String organizationForm,
+        java.lang.String inn, java.lang.String kpp, java.lang.String ogrn,
+        long regionId, java.lang.String registrationDate,
+        java.lang.String archiveStatus)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
 }

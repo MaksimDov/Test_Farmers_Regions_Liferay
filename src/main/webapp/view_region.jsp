@@ -21,6 +21,7 @@
 <portlet:defineObjects />
 <jsp:useBean id="regions" class="java.util.ArrayList" scope="request"/>
 
+
 <liferay-ui:search-container>
     <liferay-ui:search-container-results
             results="<%= regions %>"
@@ -30,9 +31,13 @@
             className="com.liferay.farmerPortlet.model.Region"
             modelVar="region"
     >
+
         <liferay-ui:search-container-column-text name="Название района" property="regionName" />
         <liferay-ui:search-container-column-text name="Код района" property="regionCode" />
         <liferay-ui:search-container-column-text name="Статус архивности" property="archiveStatus" />
+
+
+
 
     </liferay-ui:search-container-row>
 

@@ -4,15 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="681d0eeb-2c49-4de3-8a78-7dc6b17734ec" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="681d0eeb-2c49-4de3-8a78-7dc6b17734ec" name="Changes" comment="Add view, many-to-many relation">
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/FarmerMVC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FarmerMVC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RegionMVC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RegionMVC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Farmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/FarmerEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/portlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/portlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/service.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/FarmerLocalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/FarmerLocalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/FarmerLocalServiceClp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/FarmerLocalServiceClp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/FarmerLocalServiceUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/FarmerLocalServiceUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/FarmerLocalServiceWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/FarmerLocalServiceWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/base/FarmerLocalServiceClpInvoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/base/FarmerLocalServiceClpInvoker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/impl/FarmerLocalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liferay/farmerPortlet/service/impl/FarmerLocalServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/FarmerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/FarmerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/service.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/service.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/edit_farmer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/edit_farmer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view_region.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view_region.jsp" afterDir="false" />
@@ -89,8 +92,19 @@
       <workItem from="1666258870089" duration="3599000" />
       <workItem from="1666283591959" duration="2469000" />
       <workItem from="1666352419439" duration="10489000" />
-      <workItem from="1666364182592" duration="6787000" />
+      <workItem from="1666364182592" duration="7350000" />
+      <workItem from="1666409650362" duration="2801000" />
+      <workItem from="1666387285896" duration="21436000" />
+      <workItem from="1666409361810" duration="5823000" />
     </task>
+    <task id="LOCAL-00001" summary="Add view, many-to-many relation">
+      <created>1666371215888</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666371215888</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,5 +120,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add view, many-to-many relation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add view, many-to-many relation" />
   </component>
 </project>

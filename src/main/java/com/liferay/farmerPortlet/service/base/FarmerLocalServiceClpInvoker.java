@@ -81,6 +81,10 @@ public class FarmerLocalServiceClpInvoker {
     private String[] _methodParameterTypes62;
     private String _methodName63;
     private String[] _methodParameterTypes63;
+    private String _methodName64;
+    private String[] _methodParameterTypes64;
+    private String _methodName65;
+    private String[] _methodParameterTypes65;
 
     public FarmerLocalServiceClpInvoker() {
         _methodName0 = "addFarmer";
@@ -255,6 +259,20 @@ public class FarmerLocalServiceClpInvoker {
         _methodName63 = "findAllFarmers";
 
         _methodParameterTypes63 = new String[] {  };
+
+        _methodName64 = "deleteFarmer";
+
+        _methodParameterTypes64 = new String[] {
+                "long", "com.liferay.portal.service.ServiceContext"
+            };
+
+        _methodName65 = "updateFarmer";
+
+        _methodParameterTypes65 = new String[] {
+                "long", "java.lang.String", "java.lang.String",
+                "java.lang.String", "java.lang.String", "java.lang.String",
+                "long", "java.lang.String", "java.lang.String"
+            };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -487,6 +505,24 @@ public class FarmerLocalServiceClpInvoker {
         if (_methodName63.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
             return FarmerLocalServiceUtil.findAllFarmers();
+        }
+
+        if (_methodName64.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+            return FarmerLocalServiceUtil.deleteFarmer(((Long) arguments[0]).longValue(),
+                (com.liferay.portal.service.ServiceContext) arguments[1]);
+        }
+
+        if (_methodName65.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+            return FarmerLocalServiceUtil.updateFarmer(((Long) arguments[0]).longValue(),
+                (java.lang.String) arguments[1],
+                (java.lang.String) arguments[2],
+                (java.lang.String) arguments[3],
+                (java.lang.String) arguments[4],
+                (java.lang.String) arguments[5],
+                ((Long) arguments[6]).longValue(),
+                (java.lang.String) arguments[7], (java.lang.String) arguments[8]);
         }
 
         throw new UnsupportedOperationException();

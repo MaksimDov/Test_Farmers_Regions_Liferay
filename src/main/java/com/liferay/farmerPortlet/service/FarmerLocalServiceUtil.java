@@ -416,6 +416,25 @@ public class FarmerLocalServiceUtil {
         return getService().findAllFarmers();
     }
 
+    public static com.liferay.farmerPortlet.model.Farmer deleteFarmer(
+        long farmerId, com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().deleteFarmer(farmerId, serviceContext);
+    }
+
+    public static com.liferay.farmerPortlet.model.Farmer updateFarmer(
+        long farmerId, java.lang.String companyName,
+        java.lang.String organizationForm, java.lang.String inn,
+        java.lang.String kpp, java.lang.String ogrn, long regionId,
+        java.lang.String registrationDate, java.lang.String archiveStatus)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService()
+                   .updateFarmer(farmerId, companyName, organizationForm, inn,
+            kpp, ogrn, regionId, registrationDate, archiveStatus);
+    }
+
     public static void clearService() {
         _service = null;
     }

@@ -438,6 +438,27 @@ public class FarmerLocalServiceWrapper implements FarmerLocalService,
         return _farmerLocalService.findAllFarmers();
     }
 
+    @Override
+    public com.liferay.farmerPortlet.model.Farmer deleteFarmer(long farmerId,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _farmerLocalService.deleteFarmer(farmerId, serviceContext);
+    }
+
+    @Override
+    public com.liferay.farmerPortlet.model.Farmer updateFarmer(long farmerId,
+        java.lang.String companyName, java.lang.String organizationForm,
+        java.lang.String inn, java.lang.String kpp, java.lang.String ogrn,
+        long regionId, java.lang.String registrationDate,
+        java.lang.String archiveStatus)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _farmerLocalService.updateFarmer(farmerId, companyName,
+            organizationForm, inn, kpp, ogrn, regionId, registrationDate,
+            archiveStatus);
+    }
+
     /**
      * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
      */

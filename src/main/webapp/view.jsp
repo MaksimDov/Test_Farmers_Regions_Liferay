@@ -21,24 +21,29 @@
 <portlet:defineObjects />
 <jsp:useBean id="farmers" class="java.util.ArrayList" scope="request"/>
 
+
 <liferay-ui:search-container>
     <liferay-ui:search-container-results
             results="<%= farmers %>"
     />
 
     <liferay-ui:search-container-row
-            className="com.liferay.farmerPortlet.model.Farmer"
+            className="entities.FarmerEntity"
             modelVar="farmer"
     >
+        <liferay-ui:search-container-column-text name="Идентификатор" property="farmerId" />
         <liferay-ui:search-container-column-text name="Название организации" property="companyName" />
         <liferay-ui:search-container-column-text name="Организационно-правовая форма" property="organizationForm" />
         <liferay-ui:search-container-column-text name="ИНН" property="inn" />
         <liferay-ui:search-container-column-text name="КПП" property="kpp" />
         <liferay-ui:search-container-column-text name="ОГРН" property="ogrn" />
         <liferay-ui:search-container-column-text name="Район регистрации" property="regionId" />
-<%--        <liferay-ui:search-container-column-text name="Районы посевных полей" property="fieldRegion" />--%>
+        <liferay-ui:search-container-column-text name="Районы посевных полей" property="fieldRegion" />
         <liferay-ui:search-container-column-text name="Дата регистрации" property="registrationDate" />
         <liferay-ui:search-container-column-text name="Статус архивности" property="archiveStatus" />
+        <liferay-ui:search-container-column-jsp
+                path="/farmer_actions.jsp"
+                align="right" />
 
     </liferay-ui:search-container-row>
 

@@ -3,10 +3,14 @@ package com.liferay.farmerPortlet.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.farmerPortlet.model.Farmer;
 import com.liferay.farmerPortlet.model.Region;
+import com.liferay.farmerPortlet.service.FarmerLocalServiceUtil;
 import com.liferay.farmerPortlet.service.base.FarmerLocalServiceBaseImpl;
 import com.liferay.farmerPortlet.service.persistence.FarmerUtil;
 import com.liferay.farmerPortlet.service.persistence.RegionUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.service.ServiceContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,5 +54,38 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
         List<Farmer> farmers = new ArrayList<Farmer>();
         farmers = FarmerUtil.findAll();
         return farmers;
+    }
+
+    public Farmer deleteFarmer(long farmerId, ServiceContext serviceContext)
+            throws PortalException, SystemException {
+
+        Farmer farmer = getFarmer(farmerId);
+
+        resourceLocalService.deleteResource(
+                serviceContext.getCompanyId(), Farmer.class.getName(),
+                ResourceConstants.SCOPE_INDIVIDUAL, farmerId);
+
+        farmer = deleteFarmer(farmerId);
+
+        return farmer;
+    }
+
+    public Farmer updateFarmer(long farmerId, String companyName, String organizationForm, String inn, String kpp, String ogrn, long regionId, String registrationDate, String archiveStatus) throws SystemException, PortalException {
+
+        Farmer farmer = getFarmer(farmerId);
+//        Farmer farmer = FarmerLocalServiceUtil.getFarmer(farmerId);
+        farmer.setCompanyName(companyName);
+        farmer.setOrganizationForm(organizationForm);
+        farmer.setInn(inn);
+        farmer.setKpp(kpp);
+        farmer.setOgrn(ogrn);
+        farmer.setRegionId(regionId);
+        farmer.setRegistrationDate(registrationDate);
+        farmer.setArchiveStatus(archiveStatus);;
+        farmerPersistence.update(farmer);
+        System.out.println(farmerId);
+        System.out.println(farmer.getFarmerId());
+//        updateFarmer(farmer);
+        return farmer;
     }
 }
